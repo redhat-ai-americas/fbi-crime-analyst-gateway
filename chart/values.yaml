@@ -136,6 +136,10 @@ service:
 
 route:
   enabled: true
+  # Default 30s router timeout drops long agent loops with multiple MCP
+  # tool calls. Bump to 5 minutes — match the agent / MCP routes.
+  annotations:
+    haproxy.router.openshift.io/timeout: 300s
   tls:
     termination: edge
     insecureEdgeTerminationPolicy: Redirect

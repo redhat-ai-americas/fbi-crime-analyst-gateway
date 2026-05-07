@@ -5,6 +5,10 @@ metadata:
   name: {{ include "fbi-crime-analyst-gateway.fullname" . }}
   labels:
     {{- include "fbi-crime-analyst-gateway.labels" . | nindent 4 }}
+  {{- with .Values.route.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
 spec:
   to:
     kind: Service
